@@ -51,8 +51,9 @@ const SearchBooks = () => {
         bookId: book.id,
         authors: book.volumeInfo.authors || ['No author to display'],
         title: book.volumeInfo.title,
-        description: book.volumeInfo.description,
+        description: book.volumeInfo.description || 'No description available',  // Added fallback for description
         image: book.volumeInfo.imageLinks?.thumbnail || '',
+        link: book.volumeInfo.infoLink || ''
       }));
 
       setSearchedBooks(bookData);
@@ -78,7 +79,7 @@ const SearchBooks = () => {
       const { data } = await saveBook({
         variables: { 
           authors: bookToSave.authors,
-          description: bookToSave.description,
+          description: bookToSave.description, // The description now has a fallback if missing
           title: bookToSave.title,
           bookId: bookToSave.bookId,
           image: bookToSave.image,

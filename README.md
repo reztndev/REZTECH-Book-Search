@@ -1,12 +1,12 @@
 # REZTECH Book Search Engine
 
 ## Summary
-In this challenge, we'll build a fullstack MERN application that allows a user to search for book titles, view the search results and save any book presented in the search result to their profile.  The application is powered by the Google Book Search API that is used for performing the search, GraphQL backend that provides the relevant and functioning queries and mutations to the frontend and MongoDB and Mongoose for modeling and implementing the User and Book database document models. 
+In this challenge, we'll build a fullstack MERN application that allows a user to search for book titles, view the search results and save any book presented in the search result to their profile.  The application is powered by the Google Book Search API that is used for performing the search, GraphQL backend that provides the relevant and functioning queries and mutations to the frontend and MongoDB along with Mongoose ODM for modeling and implementing the User and Book database document models. 
 
-## Features and Operation
-The application uses the conventional structure for a fullstack MERN application that is supported by a GraphQL backend.  
+## Architecture
+The application uses the conventional structure for a fullstack MERN application that is supported by React on the frontend and GraphQL on the backend.  
 
-The server.js implements the Apollo Server and applies it to the Express Server to serve as the middleware.
+The server.js implements the Apollo Server and applies it to the Express Server to function as the middleware.
 
 The auth.js on the Server and Client side perform the authentication services for signing a JWT token, saving and retrieving the token from local storage, checking the token's validity, and managing the user's login and logout activities.
 
@@ -14,15 +14,32 @@ The database models include the Book.js and User.js that define the document str
 
 The Schema on the backend is comprised of typeDefs.js that follows the model structure for User and Book documents to define the object types and relevant queries and mutations that are in turn implemented by the resolvers.js.
 
-The relevant queries and mutations include, me: that returns the current logged in user, and a collection of mutations (addUser, login, saveBook, removeBook) for adding a new user and returning a JWT token, logging in a user, saving a book to a user's savedBooks array, and removing a book from a user's savedBooks array.
+The relevant queries and mutations include me, which returns the current logged-in user, and a collection of mutations (addUser, login, saveBook, removeBook) for adding a new user and returning a JWT token, logging in a user, saving a book to a user’s savedBooks array, and removing a book from a user’s savedBooks array.
 
 The frontend features the conventional queries.js and mutations.js proxy files that map to the corresponding reslovers in the backend and are used to invoke the respective functions in the implementation of React components and/or pages.
 
-Specifically, the fronted features three components (Navbar.jsx, LoginForm.jsx, SignupForm.jsx) for providing the navigational functions of the application, including (Search for Books) and (Login/Signup) and the Login/Signup forms that are used for the obvious and intended functions.
+Specifically, the fronted features three components (Navbar.jsx, LoginForm.jsx, SignupForm.jsx) for providing the navigational functions of the application, including (Search for Books) and (Login/Signup) and the user Login/Signup forms that are used for the obvious and intended purposes.
 
-The frontend also features two pages (SavedBooks.jsx) and (SearchBooks.jsx) that used to retrieve and manage a logged in user's saved books, and to search for books, respectively.
+The frontend also features two pages (SearchBooks.jsx) and (SavedBooks.jsx) that are used to search for books as well as to retrieve and manage a logged in user's saved books, respectively.
 
 -------------------------------------------
+
+## Operation
+### User NOt Logged In
+The application's landing page features a navigational bar that provides three functional elements:
+1. SEARCH FOR BOOKS input field
+This input field supports the primary function of this application and is used by the user to search for any book that they may be interested in.  To search for a particular book, the user enters the title of a book in the search field and clicks the (Submit Search) button. This invokes the search function and the results of the search, which may include all matches found, are displayed in the body of the page under the search field, including the books' images, titles and descriptions. Right above the search result an indicator displays "Viewing n Results", where n is the total number of the books in the search result.
+
+2. Search for Books link
+This link returns the user to the landing page and has meaningful context if the user has signed up or is logged in.  See more about the logged in user below.
+
+3. Login/Signup link
+This link displays a dialog that allows the user to either sign up or log in via the provided and corresponding buttons.  The Sign up button displays a form for catpturing the user's (username, email and password), whereas the Login button displays a form for capturing the necessary login credentials, which includes (email and password).
+
+### User is Logged In
+Once the user signs up or logs in, the application exposes additional features that can only be used by logged in users.  The following outlines the additional features:
+
+1. 
 
 
 Your assignment this week is emblematic of the fact that most modern websites are driven by two things: data and user demands. This shouldn't come as a surprise, as the ability to personalize user data is the cornerstone of real-world web development today. And as user demands evolve, applications need to be more performant.
