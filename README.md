@@ -22,11 +22,10 @@ Specifically, the fronted features three components (Navbar.jsx, LoginForm.jsx, 
 
 The frontend also features two pages (SearchBooks.jsx) and (SavedBooks.jsx) that are used to search for books as well as to retrieve and manage a logged in user's saved books, respectively.
 
--------------------------------------------
-
 ## Operation
-### User NOt Logged In
+### User Not Logged In
 The application's landing page features a navigational bar that provides three functional elements:
+
 1. SEARCH FOR BOOKS input field
 This input field supports the primary function of this application and is used by the user to search for any book that they may be interested in.  To search for a particular book, the user enters the title of a book in the search field and clicks the (Submit Search) button. This invokes the search function and the results of the search, which may include all matches found, are displayed in the body of the page under the search field, including the books' images, titles and descriptions. Right above the search result an indicator displays "Viewing n Results", where n is the total number of the books in the search result.
 
@@ -37,258 +36,55 @@ This link returns the user to the landing page and has meaningful context if the
 This link displays a dialog that allows the user to either sign up or log in via the provided and corresponding buttons.  The Sign up button displays a form for catpturing the user's (username, email and password), whereas the Login button displays a form for capturing the necessary login credentials, which includes (email and password).
 
 ### User is Logged In
-Once the user signs up or logs in, the application exposes additional features that can only be used by logged in users.  The following outlines the additional features:
+Once the user signs up or logs in, in addition to displaying the (Search for Books) link, the Login/Signup link is replaced with a "Logout" link and the application exposes additional features that can only be used by a logged in user.  The following outlines the additional features:
 
-1. 
+1. Save this Book! button 
+Once a book search is conducted and the page is populated with a collection of books matching the search term, a button named "Save this Book!" is displayed under the description of each book in the search result.  Once this button is clicked, the button text changes to "This book has been saved" and the corresponding book is saved to user's profile.
 
+2. See Your Books link
+Once a user is logged in, this additional link is displayed to the left of the (Logout) link on the navigation bar. If the logged in user clicks on this link, the application navigates to a new page with the header title "VIEWING SAVED BOOKS!" where the list of previously saved books are displayed in the same manner as that of the landing page, but with the following differences:
+* Right above the list of saved books, there is an indicator that displays "VIEWING n BOOK(s)", where n is the total number of the saved and displayed books.
+* The "Save this Book!" button that was ordinarily displayed in the "Search for Books" page is now replaced with a "Delete this Book!" button
 
-Your assignment this week is emblematic of the fact that most modern websites are driven by two things: data and user demands. This shouldn't come as a surprise, as the ability to personalize user data is the cornerstone of real-world web development today. And as user demands evolve, applications need to be more performant.
+Pressing the "Delete this Book!" button deletes the corresponding book and the deleted book is no longer displayed on the page.
 
-This week, you’ll take starter code with a fully functioning Google Books API search engine built with a RESTful API, and refactor it to be a GraphQL API built with Apollo Server. The app was built using the MERN stack with a React front end, MongoDB database, and Node.js/Express.js server and API. It's already set up to allow users to save book searches to the back end.
+While on this page, if the user clicks on the (Logout) link, the user is logged out and the application navigates back to the "Search for Books" page.  Once on the "Search for Books!" page, the Logout link is replaced with the original Login/Signup link.
 
-To complete the assignment, you’ll need to do the following:
+If the user clicks on the "Search for Books" link instead, the application navigates to the "Search for Books!" page as well but the user continues to be logged in.  
 
-1. Set up an Apollo Server to use GraphQL queries and mutations to fetch and modify data, replacing the existing RESTful API.
+The logged in user is able to continue to search for books and save them to their profile, view their saved books and delete their saved books until they click on the Logout link and log out of their profile.
 
-2. Modify the existing authentication middleware so that it works in the context of a GraphQL API.
+## Future Enhancements
+This application in its current form serves as a proof of concept for implementing a fullstack MERN application and its objectives are purely academic.
 
-3. Create an Apollo Provider so that requests can communicate with an Apollo Server.
+Additional features are undoubtedly needed to make this application more useful.  The following is an outline of upcoming features that are currently in the planning phase:
 
-4. Deploy your application to Render with a MongoDB database using MongoDB Atlas. Use the [Deploy with Render and MongoDB Atlas](https://coding-boot-camp.github.io/full-stack/mongodb/deploy-with-render-and-mongodb-atlas) walkthrough for instructions.
+1. User Profile
+The ability to display and edit the user profile such as email and password should be considered given that users may need to change their login credentials from time to time
 
-## User Story
+2. Ranking the Saved Books
+The ability to rank the user's saved books, such as a five star ranking system, should be considered so as to help the user in prioritizing the purchase plans for the selected books
 
-```md
-AS AN avid reader
-I WANT to search for new books to read
-SO THAT I can keep a list of books to purchase
-```
+3. Contact Page
+A link and a dedicated page for contacting the author of the application should be considered given that users may want to get in touch with the author to share their thoughts or report a problem that they have encountered with using the application
 
-## Acceptance Criteria
+## Deployment
+The application is deployed to the cloud based Render platform featuring continuous development and deployment of the hosted applications.  
 
-```md
-GIVEN a book search engine
-WHEN I load the search engine
-THEN I am presented with a menu with the options Search for Books and Login/Signup and an input field to search for books and a submit button
-WHEN I click on the Search for Books menu option
-THEN I am presented with an input field to search for books and a submit button
-WHEN I am not logged in and enter a search term in the input field and click the submit button
-THEN I am presented with several search results, each featuring a book’s title, author, description, image, and a link to that book on the Google Books site
-WHEN I click on the Login/Signup menu option
-THEN a modal appears on the screen with a toggle between the option to log in or sign up
-WHEN the toggle is set to Signup
-THEN I am presented with three inputs for a username, an email address, and a password, and a signup button
-WHEN the toggle is set to Login
-THEN I am presented with two inputs for an email address and a password and login button
-WHEN I enter a valid email address and create a password and click on the signup button
-THEN my user account is created and I am logged in to the site
-WHEN I enter my account’s email address and password and click on the login button
-THEN I the modal closes and I am logged in to the site
-WHEN I am logged in to the site
-THEN the menu options change to Search for Books, an option to see my saved books, and Logout
-WHEN I am logged in and enter a search term in the input field and click the submit button
-THEN I am presented with several search results, each featuring a book’s title, author, description, image, and a link to that book on the Google Books site and a button to save a book to my account
-WHEN I click on the Save button on a book
-THEN that book’s information is saved to my account
-WHEN I click on the option to see my saved books
-THEN I am presented with all of the books I have saved to my account, each featuring the book’s title, author, description, image, and a link to that book on the Google Books site and a button to remove a book from my account
-WHEN I click on the Remove button on a book
-THEN that book is deleted from my saved books list
-WHEN I click on the Logout button
-THEN I am logged out of the site and presented with a menu with the options Search for Books and Login/Signup and an input field to search for books and a submit button  
-```
+## Running the Live Application
+To run the application on the Render platform, click the following link: https://reztech-book-search-1.onrender.com/
 
-## Mock-Up
+## Executing the Application Locally
+To run the application locally, perform the following
+* Clone the project from: https://github.com/reztndev/REZTECH-Book-Search
+* Open the project in Visual Studio Code
+* Open a terminal and run the following:
+1. npm install
+2. npm run develop
 
-Let's start by revisiting the web application's appearance and functionality.
-
-As you can see in the following animation, a user can type a search term (in this case, "star wars") in a search box and the results appear:
-
-![Animation shows "star wars" typed into a search box and books about Star Wars appearing as results.](./Assets/21-mern-homework-demo-01.gif)
-
-The user can save books by clicking "Save This Book!" under each search result, as shown in the following animation:
-
-![Animation shows user clicking "Save This Book!" button to save books that appear in search results. The button label changes to "Book Already Saved" after it is clicked and the book is saved.](./Assets/21-mern-homework-demo-02.gif)
-
-A user can view their saved books on a separate page, as shown in the following animation:
-
-![The Viewing Lernantino's Books page shows the books that the user Lernaninto has saved.](./Assets/21-mern-homework-demo-03.gif)
-
-## Getting Started
-
-In order for this application to use a GraphQL API, you’ll need to refactor the API to use GraphQL on the back end and add some functionality to the front end. The following sections contain details about the files you’ll need to modify on the back end and the front end.
-
-**Important**: Make sure to study the application before building upon it. Better yet, start by making a copy of it. It's already a working application&mdash;you're converting it from RESTful API practices to a GraphQL API.
-
-### Back-End Specifications
-
-You’ll need to complete the following tasks in each of these back-end files:
-
-* `auth.js`: Update the auth middleware function to work with the GraphQL API.
-
-* `server.js`: Implement the Apollo Server and apply it to the Express server as middleware.
-
-* `Schemas` directory:
-
-  * `index.js`: Export your typeDefs and resolvers.
-
-  * `resolvers.js`: Define the query and mutation functionality to work with the Mongoose models.
-
-  **Hint**: Use the functionality in the `user-controller.js` as a guide.
-
-  * `typeDefs.js`: Define the necessary `Query` and `Mutation` types:
-
-    * `Query` type:
-
-      * `me`: Which returns a `User` type.
-  
-    * `Mutation` type:
-
-      * `login`: Accepts an email and password as parameters; returns an `Auth` type.
-
-      * `addUser`: Accepts a username, email, and password as parameters; returns an `Auth` type.
-
-      * `saveBook`: Accepts a book author's array, description, title, bookId, image, and link as parameters; returns a `User` type. (Look into creating what's known as an `input` type to handle all of these parameters!)
-
-      * `removeBook`: Accepts a book's `bookId` as a parameter; returns a `User` type.
-
-    * `User` type:
-
-      * `_id`
-
-      * `username`
-
-      * `email`
-
-      * `bookCount`
-
-      * `savedBooks` (This will be an array of the `Book` type.)
-
-    * `Book` type:
-
-      * `bookId` (Not the `_id`, but the book's `id` value returned from Google's Book API.)
-
-      * `authors` (An array of strings, as there may be more than one author.)
-
-      * `description`
-
-      * `title`
-
-      * `image`
-
-      * `link`
-
-    * `Auth` type:
-
-      * `token`
-
-      * `user` (References the `User` type.)
-
-### Front-End Specifications
-
-You'll need to create the following front-end files:
-
-* `queries.js`: This will hold the query `GET_ME`, which will execute the `me` query set up using Apollo Server.
-
-* `mutations.js`:
-
-  * `LOGIN_USER` will execute the `loginUser` mutation set up using Apollo Server.
-
-  * `ADD_USER` will execute the `addUser` mutation.
-
-  * `SAVE_BOOK` will execute the `saveBook` mutation.
-
-  * `REMOVE_BOOK` will execute the `removeBook` mutation.
-
-Additionally, you’ll need to complete the following tasks in each of these front-end files:
-
-* `App.jsx`: Create an Apollo Provider to make every request work with the Apollo Server.
- 
-* `SearchBooks.jsx`:
-
-  * Use the Apollo `useMutation()` Hook to execute the `SAVE_BOOK` mutation in the `handleSaveBook()` function instead of the `saveBook()` function imported from the `API` file.
-
-  * Make sure you keep the logic for saving the book's ID to state in the `try...catch` block!
-
-* `SavedBooks.jsx`:
-
-  * Remove the `useEffect()` Hook that sets the state for `UserData`.
-
-  * Instead, use the `useQuery()` Hook to execute the `GET_ME` query on load and save it to a variable named `userData`.
-
-  * Use the `useMutation()` Hook to execute the `REMOVE_BOOK` mutation in the `handleDeleteBook()` function instead of the `deleteBook()` function that's imported from `API` file. (Make sure you keep the `removeBookId()` function in place!)
-
-* `SignupForm.jsx`: Replace the `addUser()` functionality imported from the `API` file with the `ADD_USER` mutation functionality.
-
-* `LoginForm.jsx`: Replace the `loginUser()` functionality imported from the `API` file with the `LOGIN_USER` mutation functionality.
-
-## Grading Requirements
-
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
-
-This Challenge is graded based on the following criteria:
-
-### Technical Acceptance Criteria: 40%
-
-* Satisfies all of the preceding acceptance criteria plus the following:
-
-  * Has an Apollo Server that uses GraphQL queries and mutations to fetch and modify data, replacing the existing RESTful API.
-
-  * Use an Apollo Server and apply it to the Express.js server as middleware.
-
-  * Include schema settings for resolvers and typeDefs as outlined in the Challenge instructions.
-
-  * Modify the existing authentication middleware to work in the context of a GraphQL API.
-
-  * Use an Apollo Provider so that the application can communicate with the Apollo Server.
-
-  * Application must be deployed to Render.
-
-### Deployment: 32%
-
-* Application deployed at live URL.
-
-* Application loads with no errors.
-
-* Application GitHub URL submitted.
-
-* GitHub repository contains application code.
-
-### Application Quality: 15%
-
-* User experience is intuitive and easy to navigate.
-
-* User interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the Challenge instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains high-quality README file with description, screenshot, and link to the deployed application.
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
-
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+## Screenshots of the Application:
+![Search for Books:](./public/images/search-for-books.png)
+![Signup:](./public/images/signup.png)
+![Login:](./public/images/login.png)
+![Save this Book:](./public/images/save-this-book.png)
+![Viewing Saved Books:](./public/images/viewing-saved-books.png)
